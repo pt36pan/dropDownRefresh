@@ -11,9 +11,7 @@
     </div>
     <script type="module">
         import DropDownRefresh from './myDropDownRefresh.js';
-
-        function f1(){
-            let ddr = new DropDownRefresh({
+        let ddr = new DropDownRefresh({
                 //下拉刷新控件绑定的元素，将在此元素的上方添加刷新控件，并通过监听此元素的下拉事件
                 el: 'app',  
                 //下拉加载时显示的文字
@@ -33,10 +31,10 @@
 
                     });
                 }
-            });
-        }
-        f1();
-    
+        });
+    </script>
+    <script nomodule>
+        alert('no support module');
     </script>
 </body>
 </html>
