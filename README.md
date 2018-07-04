@@ -1,9 +1,12 @@
 # dropDownRefresh
-简单的移动端下拉刷新实现
+### 简单的移动端下拉刷新实现
 使用方法：
-1.import封装的js文件
-import DropDownRefresh from '../extends/myDropDownRefresh'
-2.声明一个DropDownRefresh对象并进行初始化
+#### 1.import封装的js文件
+```javascript
+import DropDownRefresh from '../extends/myDropDownRefresh';
+```
+#### 2.声明一个DropDownRefresh对象并进行初始化
+```javascript
 let ddr = new DropDownRefresh({
                 el: 'abc',  //下拉刷新控件绑定的元素，将在此元素的上方添加刷新控件，并通过监听此元素的下拉事件
                 loadingTxt: '正在拼命加载中 ...',  //下拉加载时显示的文字
@@ -21,3 +24,4 @@ let ddr = new DropDownRefresh({
                     });
                 }
             });
+```
