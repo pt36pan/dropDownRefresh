@@ -1,6 +1,6 @@
 //下拉刷新组件
 function DropDownRefresh(cfg) {
-    let defaultConfig = {
+    var defaultConfig = {
         loadingCallBack: function () {
             return new Promise(function (resolve, reject) {
                 setTimeout(function () {
@@ -14,8 +14,8 @@ function DropDownRefresh(cfg) {
         txtColor: 'white',
         height: 100
     };
-    let config = cfg;
-    for (let item in defaultConfig) {
+    var config = cfg;
+    for (var item in defaultConfig) {
         config[item] = config[item] || defaultConfig[item];
     }
     this.get = function (n) {
@@ -49,8 +49,8 @@ DropDownRefresh.prototype = {
         );
     },
     restoreDom: function () {
-        let _this = this;
-        let ddr = document.getElementById('ddr');
+        var _this = this;
+        var ddr = document.getElementById('ddr');
         this.loadingSuccess = false;
         this.isLoading = false;
         document.getElementById('ddr_bg').style.borderRadius = '0';
@@ -58,9 +58,9 @@ DropDownRefresh.prototype = {
         ddr.style.top = -(_this.get('height')) + 'px';
     },
     createDom: function () {
-        let _this = this;
-        let targetEl = document.getElementById(_this.get('el'));
-        let ddr = document.createElement('div');
+        var _this = this;
+        var targetEl = document.getElementById(_this.get('el'));
+        var ddr = document.createElement('div');
         ddr.id = 'ddr';
         ddr.style.position = 'absolute';
         ddr.style.top = -(_this.get('height')) + 'px';
@@ -68,16 +68,16 @@ DropDownRefresh.prototype = {
         ddr.style.height = _this.get('height') + 'px';
         ddr.style.transition = 'all .2s';
 
-        let bgStyle = '\"' + "background-color: " + _this.get('bgColor') + ";border: 1px solid lightgray" +
+        var bgStyle = '\"' + "background-color: " + _this.get('bgColor') + ";border: 1px solid lightgray" +
             ";width: 100%;height: 100%;opacity: 1;transition: all .2s;" + '\"';
-        let bg = '<div id="ddr_bg" class="loading" ' +
+        var bg = '<div id="ddr_bg" class="loading" ' +
             'style= ' + bgStyle +
             '></div>';
 
-        let spinnerStyle = '\"' + "position:absolute;left: 50%;top: 85%;transform: translate(-50%, -100%);" +
+        var spinnerStyle = '\"' + "position:absolute;left: 50%;top: 85%;transform: translate(-50%, -100%);" +
             ";width: 50px;height: 40px;text-align: center;font-size: 10px;" + '\"';
-        let rect = '';
-        for (let i = 0; i < 5; i++) {
+        var rect = '';
+        for (var i = 0; i < 5; i++) {
             if (i === 0) {
                 rect += '<div class="rect rect' + (i + 1) + '\" ' +
                     'style=" background-color: white;height: 100%;width: 6px;display: inline-block;"></div>'
@@ -87,13 +87,13 @@ DropDownRefresh.prototype = {
             }
 
         }
-        let spinner = '<div ' +
+        var spinner = '<div ' +
             'style=' + spinnerStyle +
             '>' + rect +
             '</div>';
 
-        let txtStyle = '\"' + "position: absolute;left: 50%;top: 100%;transform: translate(-50%, -100%);color: " + _this.get('txtColor') + ";" + '\"';
-        let txt = '<div id="ddr_txt" ' +
+        var txtStyle = '\"' + "position: absolute;left: 50%;top: 100%;transform: translate(-50%, -100%);color: " + _this.get('txtColor') + ";" + '\"';
+        var txt = '<div id="ddr_txt" ' +
             'style= ' + txtStyle +
             '>' + '下拉可以获取更多' + '</div>';
         ddr.innerHTML = bg + spinner + txt;
@@ -101,13 +101,13 @@ DropDownRefresh.prototype = {
 
 
         //定义变量，用于记录坐标和角度
-        let startx, starty, movex, movey, endx, endy, nx, ny, angle;
+        var startx, starty, movex, movey, endx, endy, nx, ny, angle;
 
         function touches(target) {
             //通过if语句判断event.type执行了哪个触摸事件
             if (event.type === "touchstart") {
                 //获取开始的位置数组的第一个触摸位置
-                let touch = event.touches[0];
+                var touch = event.touches[0];
 
                 //获取第一个坐标的X轴
                 startx = Math.floor(touch.pageX);
@@ -117,10 +117,10 @@ DropDownRefresh.prototype = {
                 //触摸中的坐标获取
             } else if (event.type === "touchmove") {
                 if (!_this.isLoading) {
-                    let touch = event.touches[0];
+                    var touch = event.touches[0];
                     movex = Math.floor(touch.pageX);
                     movey = Math.floor(touch.pageY);
-                    let offsetY = (movey - starty);
+                    var offsetY = (movey - starty);
                     if (offsetY <= 0.55 * _this.get('height')) {
                         document.getElementById('ddr').style.top = -(_this.get('height')) + (movey - starty) + 'px';
                         document.getElementById('ddr_bg').style.borderRadius = offsetY + "%";
@@ -182,14 +182,14 @@ DropDownRefresh.prototype = {
         targetEl.addEventListener('touchend', touches, false);
     },
     loadCssCode: function (code) {
-        let style = document.createElement('style');
+        var style = document.createElement('style');
         style.type = 'text/css';
         style.rel = 'stylesheet';
         //for Chrome Firefox Opera Safari
         style.appendChild(document.createTextNode(code));
         //for IE
         //style.styleSheet.cssText = code;
-        let head = document.getElementsByTagName('head')[0];
+        var head = document.getElementsByTagName('head')[0];
         head.appendChild(style);
     },
     otherMethod: function () {
@@ -197,7 +197,7 @@ DropDownRefresh.prototype = {
 };
 
 console.log('your browsers can not supports es modules! please upgrade it.')
-        let ddr = new DropDownRefresh({
+        var ddr = new DropDownRefresh({
                 //下拉刷新控件绑定的元素，将在此元素的上方添加刷新控件，并通过监听此元素的下拉事件
                 el: 'app',  
                 //下拉加载时显示的文字
