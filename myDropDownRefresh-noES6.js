@@ -104,7 +104,6 @@ DropDownRefresh.prototype = {
         var startx, starty, movex, movey, endx, endy, nx, ny, angle;
 
         function touches(target) {
-            var tar = document.getElementById(_this.get('el'));
 
             //通过if语句判断event.type执行了哪个触摸事件
             if (event.type === "touchstart") {
@@ -116,30 +115,8 @@ DropDownRefresh.prototype = {
                 //获取第一个坐标的Y轴
                 starty = Math.floor(touch.pageY);
 
-                //禁止浏览器滚动代码-1
-                var top = tar.scrollTop
-                    , totalScroll = tar.scrollHeight
-                    , currentScroll = top + tar.offsetHeight;
-                //If we're at the top or the bottom of the containers
-                //scroll, push up or down one pixel.
-                //
-                //this prevents the scroll from "passing through" to
-                //the body.
-                if(top === 0) {
-                    tar.scrollTop = 1;
-                } else if(currentScroll === totalScroll) {
-                    tar.scrollTop = top - 1;
-                }
-                //禁止浏览器滚动代码-1
-
                 //触摸中的坐标获取
             } else if (event.type === "touchmove") {
-                //禁止浏览器滚动代码-2
-                if(tar.offsetHeight < tar.scrollHeight) {
-                    event._isScroller = true;
-                    console.log(event);
-                }
-                //禁止浏览器滚动代码-2
 
                 if (!_this.isLoading) {
                     var touch = event.touches[0];
@@ -216,32 +193,6 @@ DropDownRefresh.prototype = {
         //style.styleSheet.cssText = code;
         var head = document.getElementsByTagName('head')[0];
         head.appendChild(style);
-    },
-    stopBrowsScroll: function () {
-        // 首先禁止body
-        document.body.ontouchmove = function (e) {
-            alert('body ontouchmove preventDefault');
-            e.preventDefault();
-        };
-        // 然后取得触摸点的坐标
-        var startX = 0, startY = 0;
-        //touchstart事件
-        function touchStartFunc(evt) {
-            try {
-                //evt.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
-                var touch = evt.touches[0]; //获取第一个触点
-                var x = Number(touch.pageX); //页面触点X坐标
-                var y = Number(touch.pageY); //页面触点Y坐标
-                //记录触点初始位置
-                startX = x;
-                startY = y;
-
-            } catch (e) {
-                alert('touchStartFunc：' + e.message);
-            }
-        }
-
-        document.addEventListener('touchstart', touchStartFunc, false);
     },
     otherMethod: function () {
     }
