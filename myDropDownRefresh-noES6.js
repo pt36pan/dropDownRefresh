@@ -220,7 +220,7 @@ DropDownRefresh.prototype = {
     stopBrowsScroll: function () {
         // 首先禁止body
         document.body.ontouchmove = function (e) {
-            console.log('body ontouchmove preventDefault');
+            alert('body ontouchmove preventDefault');
             e.preventDefault();
         };
         // 然后取得触摸点的坐标
