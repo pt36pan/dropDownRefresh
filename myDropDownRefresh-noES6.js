@@ -103,7 +103,7 @@ DropDownRefresh.prototype = {
         //定义变量，用于记录坐标和角度
         var startx, starty, movex, movey, endx, endy, nx, ny, angle;
 
-        function touches(target,evt) {
+        function touches(target) {
             //通过if语句判断event.type执行了哪个触摸事件
             if (event.type === "touchstart") {
                 //获取开始的位置数组的第一个触摸位置
@@ -134,8 +134,8 @@ DropDownRefresh.prototype = {
             } else if (event.type === "touchmove") {
                 //禁止浏览器滚动代码-2
                 if(target.offsetHeight < target.scrollHeight) {
-                    evt._isScroller = true;
-                    console.log(evt);
+                    event._isScroller = true;
+                    console.log(event);
                 }
                 //禁止浏览器滚动代码-2
 
@@ -201,7 +201,7 @@ DropDownRefresh.prototype = {
         }
 
         targetEl.addEventListener('touchstart', touches(targetEl), false);
-        targetEl.addEventListener('touchmove', touches(targetEl,evt), false);
+        targetEl.addEventListener('touchmove', touches(targetEl), false);
         targetEl.addEventListener('touchend', touches(targetEl), false);
     },
     loadCssCode: function (code) {
