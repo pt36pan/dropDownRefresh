@@ -104,6 +104,8 @@ DropDownRefresh.prototype = {
         var startx, starty, movex, movey, endx, endy, nx, ny, angle;
 
         function touches(target) {
+            var tar = document.getElementById(_this.get('el'));
+
             //通过if语句判断event.type执行了哪个触摸事件
             if (event.type === "touchstart") {
                 //获取开始的位置数组的第一个触摸位置
@@ -115,25 +117,25 @@ DropDownRefresh.prototype = {
                 starty = Math.floor(touch.pageY);
 
                 //禁止浏览器滚动代码-1
-                var top = target.scrollTop
-                    , totalScroll = target.scrollHeight
-                    , currentScroll = top + target.offsetHeight;
+                var top = tar.scrollTop
+                    , totalScroll = tar.scrollHeight
+                    , currentScroll = top + tar.offsetHeight;
                 //If we're at the top or the bottom of the containers
                 //scroll, push up or down one pixel.
                 //
                 //this prevents the scroll from "passing through" to
                 //the body.
                 if(top === 0) {
-                    target.scrollTop = 1;
+                    tar.scrollTop = 1;
                 } else if(currentScroll === totalScroll) {
-                    target.scrollTop = top - 1;
+                    tar.scrollTop = top - 1;
                 }
                 //禁止浏览器滚动代码-1
 
                 //触摸中的坐标获取
             } else if (event.type === "touchmove") {
                 //禁止浏览器滚动代码-2
-                if(target.offsetHeight < target.scrollHeight) {
+                if(tar.offsetHeight < tar.scrollHeight) {
                     event._isScroller = true;
                     console.log(event);
                 }
@@ -200,9 +202,9 @@ DropDownRefresh.prototype = {
             }
         }
 
-        targetEl.addEventListener('touchstart', touches(targetEl), false);
-        targetEl.addEventListener('touchmove', touches(targetEl), false);
-        targetEl.addEventListener('touchend', touches(targetEl), false);
+        targetEl.addEventListener('touchstart', touches, false);
+        targetEl.addEventListener('touchmove', touches, false);
+        targetEl.addEventListener('touchend', touches, false);
     },
     loadCssCode: function (code) {
         var style = document.createElement('style');
