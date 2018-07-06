@@ -192,6 +192,32 @@ DropDownRefresh.prototype = {
         var head = document.getElementsByTagName('head')[0];
         head.appendChild(style);
     },
+    stopBrowsScroll: function () {
+        // 首先禁止body
+        document.body.ontouchmove = function (e) {
+            console.log('body ontouchmove preventDefault');
+            e.preventDefault();
+        };
+        // 然后取得触摸点的坐标
+        var startX = 0, startY = 0;
+        //touchstart事件
+        function touchStartFunc(evt) {
+            try {
+                //evt.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
+                var touch = evt.touches[0]; //获取第一个触点
+                var x = Number(touch.pageX); //页面触点X坐标
+                var y = Number(touch.pageY); //页面触点Y坐标
+                //记录触点初始位置
+                startX = x;
+                startY = y;
+
+            } catch (e) {
+                alert('touchStartFunc：' + e.message);
+            }
+        }
+
+        document.addEventListener('touchstart', touchStartFunc, false);
+    },
     otherMethod: function () {
     }
 };
